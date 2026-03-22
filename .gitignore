@@ -1,6 +1,8 @@
 # 编译产物
 build/
 images/
+debug/
+bx_enh_dbg.ini
 *.bin
 *.o
 *.elf

@@ -1,0 +1,35 @@
+# ============================================
+# Bochs 配置文件
+# ============================================
+
+# 内存
+memory: guest=32, host=32
+
+# BIOS 和 VGA ROM
+romimage: file="C:\Program Files\Bochs-3.0\BIOS-bochs-latest"
+vgaromimage: file="C:\Program Files\Bochs-3.0\VGABIOS-lgpl-latest.bin"
+
+# 启动顺序
+boot: disk
+
+# 硬盘
+ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
+ata0-master: type=disk, path="C:/Users/A/Desktop/work_place_win11/project_1_asm/images/hd.img", mode=flat
+ata0-slave: type=none
+
+# CPU
+cpu: count=1, ips=50000000
+
+# 显示
+display_library: win32, options="gui_debug"
+
+# 日志输出到 debug/ 目录
+log: debug/bochsout.txt
+debug: action=report
+panic: action=ask
+error: action=report
+info: action=report
+
+# 调试日志输出到 debug/ 目录
+debugger_log: debug/bochsdebug.txt
+magic_break: enabled=1

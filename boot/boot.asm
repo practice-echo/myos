@@ -1,34 +1,45 @@
 [ORG 0x7c00]
+
+[SECTION .text]
 [BITS 16]
 
-mov ax, 3
-int 0x10
+global _start
+_start:
 
-mov ax, 0b800h
-mov ds, ax
+    mov ax,3
+    int 0x10
 
-mov byte [0x00], '2'
-mov byte [0x02], '0'
-mov byte [0x04], '2'
-mov byte [0x06], '1'
-mov byte [0x08], ','
-mov byte [0x0a], 'H'
-mov byte [0x0c], 'a'
-mov byte [0x0e], 'p'
-mov byte [0x10], 'p'
-mov byte [0x12], 'y'
-mov byte [0x14], ' '
-mov byte [0x16], 'N'
-mov byte [0x18], 'i'
-mov byte [0x1a], 'u'
-mov byte [0x1c], ' '
-mov byte [0x1e], 'Y'
-mov byte [0x20], 'e'
-mov byte [0x22], 'a'
-mov byte [0x24], 'r'
-mov byte [0x26], '!'
+    mov     ax,0
+    mov     ss,ax
+    mov     ds,ax
+    mov     es,ax
+    mov     fs,ax
+    mov     gs,ax
+    mov     si,ax
 
-jmp $
+    mov si,msg
+    call    print
 
-times 510-($-$$) db 0
+    jmp     $
+
+
+    print:
+        mov ah,0x0e
+        mov bh,0
+        mov bl,0x01
+.loop:
+    mov al,[si]
+    cmp al,0
+    jz .done
+    int 0x10
+
+    inc si
+    jmp .loop
+.done:
+    ret
+
+msg:
+    db "hello,world", 10, 13, 0
+
+times 510 - ($ - $$) db 0
 db 0x55, 0xaa
