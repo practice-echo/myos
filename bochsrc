@@ -14,7 +14,7 @@ boot: disk
 
 # 硬盘
 ata0: enabled=1, ioaddr1=0x1f0, ioaddr2=0x3f0, irq=14
-ata0-master: type=disk, path="C:/Users/A/Desktop/work_place_win11/project_1_asm/images/hd.img", mode=flat
+ata0-master: type=disk, path="D:\practice-echo\Work_place\Code\Coding\project_1_asm\images\hd.img", mode=flat
 ata0-slave: type=none
 
 # CPU
